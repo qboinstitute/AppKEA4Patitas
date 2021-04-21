@@ -14,7 +14,7 @@ interface PatitasServicio {
     @POST("login.php")
     fun login(@Body requestLogin: RequestLogin) : Call<ResponseLogin>
 
-    @PUT
+    @PUT("persona.php")
     fun registro(@Body requestRegistro: RequestRegistro): Call<ResponseRegistro>
 
 }
