@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.google.android.material.snackbar.Snackbar
 import com.qbo.appkea4patitas.R
 import com.qbo.appkea4patitas.databinding.ActivityRegistroBinding
 
@@ -19,6 +20,20 @@ class RegistroActivity : AppCompatActivity() {
             startActivity(Intent(applicationContext,
                 LoginActivity::class.java))
         }
+        binding.btnregistrar.setOnClickListener {
+            binding.btnregistrar.isEnabled = false
+            if(validarFormulario(it)){
+                registrarUsuario(it)
+            }else{
+                mensaje(it, getString(R.string.msgerroregistro))
+                binding.btnregistrar.isEnabled = true
+            }
+        }
+    }
+
+    private fun registrarUsuario(vista: View) {
+        //val requestRegistro = RequestR
+
     }
 
     fun validarFormulario(vista: View): Boolean{
@@ -71,6 +86,19 @@ class RegistroActivity : AppCompatActivity() {
 
         }
         return respuesta
+    }
+    private fun setearControles(){
+        binding.etnombrereg.setText("")
+        binding.etapellidoreg.setText("")
+        binding.etemailreg.setText("")
+        binding.etcelularreg.setText("")
+        binding.etusuarioreg.setText("")
+        binding.etpasswordreg.setText("")
+        binding.etpasswordrep.setText("")
+    }
+
+    fun mensaje (vista: View, mensaje: String){
+        Snackbar.make(vista, mensaje, Snackbar.LENGTH_LONG).show()
     }
 
 }

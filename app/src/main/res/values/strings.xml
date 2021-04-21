@@ -25,4 +25,5 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="valtvregistrarusuario">Si no tienes cuenta, registrate aquí.</string>
     <string name="msgusupassword">Es obligatorio su usuario y password.</string>
+    <string name="msgerroregistro">Todos los datos son obligatorios.</string>
 </resources>
