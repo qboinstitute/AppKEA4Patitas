@@ -150,6 +150,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/valbtnregistrar"
+            app:icon="@drawable/ic_baseline_how_to_reg_24"
+            app:iconGravity="textStart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout14" />
