@@ -5,56 +5,68 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.snackbar.Snackbar
 import com.qbo.appkea4patitas.R
+import com.qbo.appkea4patitas.databinding.FragmentVoluntarioBinding
+import com.qbo.appkea4patitas.retrofit.PatitasCliente
+import com.qbo.appkea4patitas.retrofit.request.RequestVoluntario
+import com.qbo.appkea4patitas.retrofit.response.ResponseRegistro
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [VoluntarioFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class VoluntarioFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentVoluntarioBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _binding = FragmentVoluntarioBinding.inflate(inflater,
+            container, false)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_voluntario, container, false)
+        binding.btnregvoluntario.setOnClickListener {
+            if(binding.cbaceptarvoluntario.isChecked){
+                binding.btnregvoluntario.isEnabled = false
+                registrarVoluntario(it)
+            }else{
+                mensaje(it, getString(R.string.msgerroregvoluntario))
+            }
+        }
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment VoluntarioFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            VoluntarioFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    fun setearControles(){
+        binding.tvtextovoluntario.visibility = View.GONE
+        binding.btnregvoluntario.visibility = View.GONE
+        binding.cbaceptarvoluntario.visibility = View.GONE
+        binding.tvtitulovoluntario.text = getString(R.string.msgvoluntario)
     }
+
+    private fun mensaje(vista: View, mensaje: String) {
+        Snackbar.make(vista, mensaje, Snackbar.LENGTH_LONG).show()
+    }
+
+    private fun registrarVoluntario(vista: View) {
+        val call: Call<ResponseRegistro> = PatitasCliente
+            .retrofitServicio.registrarVoluntario(RequestVoluntario(1))
+        call.enqueue(object : Callback<ResponseRegistro>{
+            override fun onResponse(
+                call: Call<ResponseRegistro>,
+                response: Response<ResponseRegistro>
+            ) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onFailure(call: Call<ResponseRegistro>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+    }
+
 }
