@@ -39,4 +39,5 @@
     <string name="valbtnregvoluntario">REGISTRAR VOLUNTARIO</string>
     <string name="msgerroregvoluntario">Debe aceptar los términos y condiciones.</string>
     <string name="msgvoluntario">MUCHAS GRACIAS POR UNIRTE A NUESTRO EQUIPO !!</string>
+    <string name="valcbrecordarcheck">Quitar el check para ingresar con otro usuario.</string>
 </resources>
