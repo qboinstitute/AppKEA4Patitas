@@ -48,19 +48,21 @@ class LoginActivity : AppCompatActivity() {
         call.enqueue(object : Callback<ResponseLogin> {
             override fun onResponse(call: Call<ResponseLogin>, response: Response<ResponseLogin>) {
                 if(response.body()!!.rpta){
-                    //mensaje(vista, "Login success!!")
                     startActivity(Intent(applicationContext,
                         HomeActivity::class.java))
                     finish()
+                }else{
+                    mensaje(vista, getString(R.string.msgerrorlogin))
                 }
+                binding.btnlogin.isEnabled = true
             }
             override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
-                Log.e("ErrorWS", t.message)
-                mensaje(vista, "Login failed!!")
+                mensaje(vista, getString(R.string.errorapirest))
+                binding.btnlogin.isEnabled = true
             }
 
         })
-        binding.btnlogin.isEnabled = true
+
     }
 
 

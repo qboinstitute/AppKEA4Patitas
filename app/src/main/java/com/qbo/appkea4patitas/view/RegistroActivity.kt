@@ -7,6 +7,12 @@ import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import com.qbo.appkea4patitas.R
 import com.qbo.appkea4patitas.databinding.ActivityRegistroBinding
+import com.qbo.appkea4patitas.retrofit.PatitasCliente
+import com.qbo.appkea4patitas.retrofit.request.RequestRegistro
+import com.qbo.appkea4patitas.retrofit.response.ResponseRegistro
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RegistroActivity : AppCompatActivity() {
 
@@ -32,7 +38,33 @@ class RegistroActivity : AppCompatActivity() {
     }
 
     private fun registrarUsuario(vista: View) {
-        //val requestRegistro = RequestR
+        val requestRegistro = RequestRegistro(
+            binding.etnombrereg.text.toString(),
+            binding.etapellidoreg.text.toString(),
+            binding.etemailreg.text.toString(),
+            binding.etemailreg.text.toString(),
+            binding.etusuarioreg.text.toString(),
+            binding.etpasswordreg.text.toString()
+        )
+        val call: Call<ResponseRegistro> = PatitasCliente
+            .retrofitServicio.registro(requestRegistro)
+        call.enqueue(object : Callback<ResponseRegistro>{
+            override fun onResponse(
+                call: Call<ResponseRegistro>,
+                response: Response<ResponseRegistro>
+            ) {
+                if(response.body()!!.rpta){
+                    setearControles()
+                }
+                mensaje(vista, response.body()!!.mensaje)
+                binding.btnregistrar.isEnabled = true
+            }
+
+            override fun onFailure(call: Call<ResponseRegistro>, t: Throwable) {
+                mensaje(vista, getString(R.string.errorapirest))
+                binding.btnregistrar.isEnabled = true
+            }
+        })
 
     }
 

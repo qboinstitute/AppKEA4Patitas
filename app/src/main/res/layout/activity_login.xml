@@ -10,22 +10,18 @@
         android:id="@+id/imageView2"
         android:layout_width="212dp"
         android:layout_height="247dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/imgsplash"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout2"
         style="@style/Widget.Design.TextInputLayout"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
@@ -39,12 +35,10 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout3"
         style="@style/Widget.Design.TextInputLayout"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnlogin"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
         app:passwordToggleEnabled="true">
@@ -59,17 +53,15 @@
 
     <Button
         android:id="@+id/btnlogin"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/valbtnlogin"
         app:icon="@drawable/ic_baseline_login_24_white"
         app:iconGravity="textStart"
-        app:layout_constraintBottom_toTopOf="@+id/tvregistrarusuario"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
+        app:layout_constraintTop_toBottomOf="@+id/cbrecordar" />
 
     <TextView
         android:id="@+id/tvregistrarusuario"
@@ -79,9 +71,17 @@
         android:text="@string/valtvregistrarusuario"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btnlogin"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/btnlogin"
         app:layout_constraintTop_toBottomOf="@+id/btnlogin" />
+
+    <CheckBox
+        android:id="@+id/cbrecordar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/valcbrecordar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

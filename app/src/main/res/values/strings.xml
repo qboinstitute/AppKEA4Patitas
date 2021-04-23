@@ -26,4 +26,11 @@
     <string name="valtvregistrarusuario">Si no tienes cuenta, registrate aquí.</string>
     <string name="msgusupassword">Es obligatorio su usuario y password.</string>
     <string name="msgerroregistro">Todos los datos son obligatorios.</string>
+    <string name="errorapirest">Algo va mal, intentarlo nuevamente!</string>
+    <string name="msgerrorlogin">Usuario o password incorrecto.</string>
+    <string name="valcbrecordar">¿Recordar datos?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="valnavlistafragment">Mascotas Perdidas</string>
+    <string name="valnavvoluntariofragment">Únete a nosotros</string>
 </resources>
