@@ -12,6 +12,7 @@ object PatitasCliente {
         .connectTimeout(1, TimeUnit.MINUTES)
         .readTimeout(30, TimeUnit.SECONDS)
         .writeTimeout(15, TimeUnit.SECONDS)
+        //.addInterceptor(ApiInterceptor()) Para el uso de JWT
         .build()
 
     private fun buildRetrofit() = Retrofit.Builder()

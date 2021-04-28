@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.CheckBox
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
@@ -51,6 +52,10 @@ class LoginActivity : AppCompatActivity() {
             personaViewModel.eliminartodo()
         }
 
+        binding.cbrecordar.setOnClickListener{
+            setearValoresDeRecordar(it)
+        }
+
         binding.btnlogin.setOnClickListener {
             binding.btnlogin.isEnabled = false
             if(validarUsuarioPassword()){
@@ -64,6 +69,26 @@ class LoginActivity : AppCompatActivity() {
         binding.tvregistrarusuario.setOnClickListener {
             startActivity(Intent(applicationContext,
             RegistroActivity::class.java))
+        }
+    }
+
+    private fun setearValoresDeRecordar(view: View) {
+        if(view is CheckBox){
+            val check = view.isChecked
+            when(view.id){
+                R.id.cbrecordar -> {
+                    if(!check){
+                        if(verificarValorSharedPreferences()){
+                            SharedPreferencesManager()
+                                    .deletePreferences(Constantes().PREF_RECORDAR)
+                            personaViewModel.eliminartodo()
+                            binding.etusuariologin.isEnabled = true
+                            binding.etpasswordlogin.isEnabled = true
+                            binding.cbrecordar.text = getString(R.string.valcbrecordar)
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -98,7 +123,6 @@ class LoginActivity : AppCompatActivity() {
                                 .setBooleanValue(Constantes().PREF_RECORDAR, true)
                         }
                     }
-
                     startActivity(Intent(applicationContext,
                         HomeActivity::class.java))
                     finish()
@@ -110,6 +134,7 @@ class LoginActivity : AppCompatActivity() {
             override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
                 mensaje(vista, getString(R.string.errorapirest))
                 binding.btnlogin.isEnabled = true
+
             }
 
         })

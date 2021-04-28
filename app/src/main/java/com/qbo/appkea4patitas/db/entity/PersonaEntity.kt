@@ -14,4 +14,5 @@ data class PersonaEntity(
     val usuario: String,
     val password: String,
     val esvoluntario: String
+
 )
